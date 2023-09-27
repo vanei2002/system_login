@@ -1,6 +1,14 @@
+'use client'
+import { AuthUser } from '@/components/AuthUser/authUser'
+import { useGlobalsContext } from '@/context/GlobalsContext'
 
 export default function Home() {
+  const { singInGoogle } = useGlobalsContext()
   return (
-    <h2>Funcionando</h2>
+    <main>
+      <AuthUser />
+
+      <button onClick={singInGoogle}>Ola</button>
+    </main>
   )
 }

@@ -1,33 +1,87 @@
+import { useGlobalsContext } from '@/context/GlobalsContext'
+import { Authpage } from '../Authgoogle/Authpage'
 import './authUser.sass'
+import { InputText } from '../InputText/InputText'
+import { useState } from 'react'
+import { ButtonPage } from '../ButtonPage/ButtonPage'
 
 export const AuthUser = () => {
+  const { singInGoogle, singInFacebook } = useGlobalsContext()
+
+  const [user, setUser] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+
+  const [pageStates, setPageStates] = useState<boolean>(true)
+
+  console.log(pageStates)
+
+  function validateUser() {
+    if (!user && !password) return alert('Campos não preenchidos')
+
+    alert(`Usuario ${user} e senha ${password}`)
+  }
+
   return (
-    <main id="system_login">
+    <main id={`system_login`}>
       <section id="container_login">
         <h1>Login</h1>
 
-        <div className="form">
-          <div className="username">
-            <label htmlFor="">
-              <input type="text" />
-            </label>
-          </div>
-          <div className="password">
-            <label htmlFor="">
-              <input type="password" />
-            </label>
-          </div>
+        <div className="AuthSystem">
+          <Authpage
+            backgrounds="#4889F4"
+            functionAuth={singInGoogle}
+            images="./Google.svg"
+            altImages="google"
+            colorText="#fff"
+            // eslint-disable-next-line react/no-children-prop
+            children="Login com o Google"
+          />
 
-          <div>
-            <p>Esqueceu a senha</p>
-            <p>Ainda não tem Cadastro</p>
+          <Authpage
+            style="mtAuth"
+            backgrounds="#F4F4F4  "
+            functionAuth={singInFacebook}
+            images="./facebook.svg"
+            altImages="facebook"
+            colorText="#4889F4"
+            // eslint-disable-next-line react/no-children-prop
+            children="Login com o Facebook"
+          />
+        </div>
+
+        <div className="form">
+          <InputText
+            // eslint-disable-next-line react/no-children-prop
+            children="User Name"
+            name="user"
+            onchange={setUser}
+            type="text"
+            style="mb"
+          />
+
+          <InputText
+            // eslint-disable-next-line react/no-children-prop
+            children="Password"
+            name="password"
+            onchange={setPassword}
+            type="password"
+            style="mb"
+          />
+
+          <div className="links">
+            <a href="#">Esqueceu a senha</a>
+            <a href="#" onClick={() => setPageStates(false)}>
+              Ainda não tem Cadastro
+            </a>
           </div>
         </div>
 
-        <button>Entar</button>
+        <div className="button">
+          <ButtonPage value="Entrar" onclick={validateUser} />
+        </div>
       </section>
 
-      <section className="text_login">
+      <section id="text_login">
         <div>
           <h1>Bem-Vindo de Volta</h1>
 

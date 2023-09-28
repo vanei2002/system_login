@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext } from 'react'
+import { ReactNode, createContext, useContext } from 'react'
 
 import {
   signInWithPopup,
@@ -15,9 +15,14 @@ interface ContextProps {
   singInGoogle: (value: object) => void
 }
 
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const GlobalsContext = createContext<ContextProps>(null!)
 
-export const GlobalsContextProvider = ({ children }) => {
+export const GlobalsContextProvider = ({
+  children,
+}: {
+  children: ReactNode
+}) => {
   const singInFacebook = () => {
     const provider = new FacebookAuthProvider()
     signInWithPopup(auth, provider)

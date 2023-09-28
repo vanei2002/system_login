@@ -1,5 +1,6 @@
 @use '../../sass/variables'
 
+
 #system_login
     width: 80rem
     height: 45rem
@@ -7,29 +8,59 @@
     border-radius: variables.$borderLogin
     background: #FFF
     margin: 0 auto
-    margin-top: 10%
+    margin-top: 6%
 
     display: grid
     grid-template-columns: 1fr 1fr
 
+    position: relative
 
     #container_login
+
+        width: 500px
+        margin: 0 auto
 
         h1
             text-align: center
             font-weight: 400
             font-size: 2rem
-            margin: 2rem 0
+            margin: 2.5rem 0
+
+        .AuthSystem
+            margin-top: 3rem
+
+            .mtAuth 
+                margin-top: 35px
+                margin-bottom: 59px
 
         .form
-            width: 36rem
+            width: 500px
             margin: 0 auto
 
-    .text_login
+            .mb
+                margin-bottom: 1.5rem
+
+        .links
+            display: flex
+            width: 100%
+            justify-content: center
+            text-align: center
+            a
+                width:  271px
+                text-decoration: none
+                color: #000
+                font-weight: 400
+
+        .button
+            position: absolute
+            left: 200px
+            bottom: 90px     
+
+    #text_login
         background: variables.$backgrondGrenn
         border-radius: 0px variables.$borderLogin variables.$borderLogin 0px
         color: #000
-
+        z-index: 1
         display: flex
         justify-content: center
         text-align: center

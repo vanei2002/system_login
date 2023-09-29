@@ -5,18 +5,37 @@ import { InputText } from '../InputText/InputText'
 import { useState } from 'react'
 import { ButtonPage } from '../ButtonPage/ButtonPage'
 
+type NewUser = {
+  name: string
+  lastName: string
+  email: string
+  password: string
+}
+
 export const Register = () => {
   const { singInGoogle, setPageStates } = useGlobalsContext()
 
-  const [user, setUser] = useState<string>('')
+  const [name, setName] = useState<string>('')
+  const [lastName, setLastName] = useState<string>('')
+  const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
 
   const backgroun =
     'linear-gradient(180deg, #4879F6 1.56%, rgba(72, 121, 246, 0.54) 63.54%)'
-  function validateUser() {
-    if (!user && !password) return alert('Campos não preenchidos')
 
-    alert(`Usuario ${user} e senha ${password}`)
+  function createNewUser() {
+    if (!name && !password && !email && !lastName)
+      return alert('Campos não preenchidos')
+
+    const newUser: NewUser = {
+      name,
+      lastName,
+      email,
+      password,
+    }
+
+    console.log(newUser)
+    alert(`Usuario cadastrado com sucesso: ${newUser.name} ${newUser.lastName}`)
   }
 
   return (
@@ -42,7 +61,7 @@ export const Register = () => {
             // eslint-disable-next-line react/no-children-prop
             children="Name"
             name="user"
-            onchange={setUser}
+            onchange={setName}
             type="text"
             style="mb"
             backgrou="#4889F4"
@@ -51,7 +70,7 @@ export const Register = () => {
             // eslint-disable-next-line react/no-children-prop
             children="LastName"
             name="user"
-            onchange={setUser}
+            onchange={setLastName}
             type="text"
             style="mb"
             backgrou="#4889F4"
@@ -61,7 +80,7 @@ export const Register = () => {
           // eslint-disable-next-line react/no-children-prop
           children="Email"
           name="email"
-          onchange={setUser}
+          onchange={setEmail}
           type="email"
           style="mb"
           backgrou="#4889F4"
@@ -85,7 +104,11 @@ export const Register = () => {
       </div>
 
       <div className="button">
-        <ButtonPage value="Entrar" backgrou={backgroun} />
+        <ButtonPage
+          value="Entrar"
+          backgrou={backgroun}
+          onclick={createNewUser}
+        />
       </div>
     </section>
   )

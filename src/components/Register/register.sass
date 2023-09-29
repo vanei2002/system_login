@@ -1,7 +1,7 @@
 @use '../../sass/variables'
 
-#container_login
-    
+#container_register
+
     width: 500px
     margin: 0 auto
 
@@ -22,6 +22,10 @@
         width: 500px
         margin: 0 auto
 
+        .name-lats
+
+            display: flex
+            gap: 2rem
         .mb
             margin-bottom: 2rem
 
@@ -39,12 +43,12 @@
 
     .button
         position: absolute
-        left: 200px
+        right: 215px
         bottom: 90px     
 
-#text_login
-    // background: variables.$backgrondGrenn
-    border-radius: 0px variables.$borderLogin variables.$borderLogin 0px
+#text_register
+    // background: variables.$backgrondBlue
+    border-radius: variables.$borderLogin 0px 0px variables.$borderLogin
     color: #000
     z-index: 1
     display: flex

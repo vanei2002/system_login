@@ -4,11 +4,16 @@ import './buttonpage.sass'
 type ButtonType = {
   value: string
   onclick: () => void
+  backgrou?: string
 }
 
-export const ButtonPage = ({ value, onclick }: ButtonType) => {
+export const ButtonPage = ({ backgrou, value, onclick }: ButtonType) => {
   return (
-    <button className="styleButton" onClick={onclick}>
+    <button
+      style={{ background: backgrou }}
+      className="styleButton"
+      onClick={onclick}
+    >
       {value}
     </button>
   )

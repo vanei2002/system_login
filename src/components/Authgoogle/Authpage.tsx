@@ -28,8 +28,10 @@ export const Authpage = ({
       onClick={functionAuth}
     >
       <div className="auth">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={images} alt={altImages} />
+        <div style={{ background: ' #fff' }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={images} alt={altImages} />
+        </div>
       </div>
       <p style={{ color: colorText }}>{children}</p>
     </div>

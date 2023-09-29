@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactNode, createContext, useContext } from 'react'
+import { ReactNode, createContext, useContext, useState } from 'react'
 
 import {
   signInWithPopup,
@@ -13,6 +13,8 @@ import { auth } from '../config/firebase'
 interface ContextProps {
   singInFacebook: (value: object) => void
   singInGoogle: (value: object) => void
+  pageStates: boolean
+  setPageStates: (value: boolean) => void
 }
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -23,6 +25,8 @@ export const GlobalsContextProvider = ({
 }: {
   children: ReactNode
 }) => {
+  const [pageStates, setPageStates] = useState<boolean>(true)
+
   const singInFacebook = () => {
     const provider = new FacebookAuthProvider()
     signInWithPopup(auth, provider)
@@ -45,6 +49,8 @@ export const GlobalsContextProvider = ({
       value={{
         singInFacebook,
         singInGoogle,
+        pageStates,
+        setPageStates,
       }}
     >
       {children}

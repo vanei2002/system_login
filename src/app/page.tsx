@@ -1,13 +1,18 @@
 'use client'
-import { AuthUser } from '@/components/AuthUser/authUser'
+import { AuthUserLogin, TextLogin } from '@/components/AuthUser/authUser'
+import './app.sass'
+import { Register, TextRegister } from '@/components/Register/Register'
 import { useGlobalsContext } from '@/context/GlobalsContext'
-
 export default function Home() {
-  const { singInGoogle } = useGlobalsContext()
+  const { pageStates } = useGlobalsContext()
   return (
-    <main>
-      <AuthUser />
-      <button onClick={singInGoogle}>Ola</button>
+    <main id="system">
+      <section id={pageStates ? `` : `leftPage`}>
+        {pageStates ? <AuthUserLogin /> : <TextRegister />}
+      </section>
+      <section id={pageStates ? `rigthPage` : ``}>
+        {pageStates ? <TextLogin /> : <Register />}
+      </section>
     </main>
   )
 }

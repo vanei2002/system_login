@@ -4,7 +4,7 @@ import './app.sass'
 import { Register, TextRegister } from '@/components/Register/Register'
 import { useGlobalsContext } from '@/context/GlobalsContext'
 
-export default function Home() {
+export default function SystemLogin() {
   const { pageStates } = useGlobalsContext()
   return (
     <main id="system">

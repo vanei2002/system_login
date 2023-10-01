@@ -1,4 +1,5 @@
 @use '../sass/variables'
+@use '../sass/mixins'
 
 #system
     width: 80rem
@@ -7,13 +8,16 @@
     border-radius: variables.$borderLogin
     background: #FFF
     margin: 0 auto
-    margin-top: 8%
+    margin-top: 6%
     display: grid
     grid-template-columns: 1fr 1fr
 
     position: relative
     transition: background 5.5s ease
     animation: loadPage 2s ease 1
+
+    @include mixins.animationStarts 
+    
 
     section
         height: 100%

@@ -3,6 +3,7 @@ import { AuthUserLogin, TextLogin } from '@/components/AuthUser/authUser'
 import './app.sass'
 import { Register, TextRegister } from '@/components/Register/Register'
 import { useGlobalsContext } from '@/context/GlobalsContext'
+
 export default function Home() {
   const { pageStates } = useGlobalsContext()
   return (

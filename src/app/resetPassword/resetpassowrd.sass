@@ -1,0 +1,50 @@
+@use '../../sass/variables'
+@use '../../sass/mixins'
+
+#container_reset
+    width: 900px
+    height: 650px
+    margin: 0 auto
+    margin-top: 8%
+    border-radius: 10px 
+    background: variables.$backgrondWhite
+    animation: loadPage 2s ease 1
+    transition: 2s
+    @include mixins.animationStarts 
+
+    .container-form
+        width: 600px
+        height: 614px
+        margin: 0 auto
+        position: relative
+
+        h1, p
+            text-align: center
+
+        h1
+            font-size: 2rem
+            font-weight: 400
+            padding: 40px 0 40px 0
+
+        p 
+            font-size: 1.2rem
+            padding-bottom: 70px
+
+
+        .links
+            width: 200px
+            margin: 0 auto
+            margin-top: 50px
+            text-align: center
+            border-bottom: 1px solid #83EE9A
+
+            a
+                text-decoration: none
+                color: #000
+                font-weight: 400
+                font-size: 18px
+
+        .style-button
+            position: relative
+            bottom: -60px
+            left: 200px

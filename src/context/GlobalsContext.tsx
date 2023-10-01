@@ -13,6 +13,7 @@ import { auth } from '../config/firebase'
 interface ContextProps {
   singInFacebook: (value: object) => void
   singInGoogle: (value: object) => void
+  registerInGoogle: (value: object) => void
   pageStates: boolean
   setPageStates: (value: boolean) => void
 }
@@ -40,7 +41,16 @@ export const GlobalsContextProvider = ({
     const provider = new GoogleAuthProvider()
     signInWithPopup(auth, provider)
       .then((result) => {
-        console.log(result.user.email)
+        console.log(result)
+      })
+      .catch((err) => console.log(err))
+  }
+
+  const registerInGoogle = () => {
+    const provider = new GoogleAuthProvider()
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        console.log(result)
       })
       .catch((err) => console.log(err))
   }
@@ -51,6 +61,7 @@ export const GlobalsContextProvider = ({
         singInGoogle,
         pageStates,
         setPageStates,
+        registerInGoogle,
       }}
     >
       {children}

@@ -1,41 +1,21 @@
 import { useGlobalsContext } from '@/context/GlobalsContext'
 import { Authpage } from '../Authgoogle/Authpage'
-import './register.sass'
-import { InputText } from '../InputText/InputText'
-import { useState } from 'react'
 import { ButtonPage } from '../ButtonPage/ButtonPage'
+import { useForm } from 'react-hook-form'
+import { InputText } from '../InputText/InputText'
 
-type NewUser = {
-  name: string
-  lastName: string
-  email: string
-  password: string
-}
+import './register.sass'
 
 export const Register = () => {
-  const { singInGoogle, setPageStates } = useGlobalsContext()
-
-  const [name, setName] = useState<string>('')
-  const [lastName, setLastName] = useState<string>('')
-  const [email, setEmail] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
+  const { registerInGoogle, setPageStates } = useGlobalsContext()
 
   const backgroun =
     'linear-gradient(180deg, #4879F6 1.56%, rgba(72, 121, 246, 0.54) 63.54%)'
 
-  function createNewUser() {
-    if (!name && !password && !email && !lastName)
-      return alert('Campos não preenchidos')
+  const { register, handleSubmit } = useForm()
 
-    const newUser: NewUser = {
-      name,
-      lastName,
-      email,
-      password,
-    }
-
-    console.log(newUser)
-    alert(`Usuario cadastrado com sucesso: ${newUser.name} ${newUser.lastName}`)
+  const onSubmit = (data: object) => {
+    console.log(data) // 'data' contém os valores de todos os campos de entrada
   }
 
   return (
@@ -46,7 +26,7 @@ export const Register = () => {
         <Authpage
           style="mtAuth"
           backgrounds="#4889F4"
-          functionAuth={singInGoogle}
+          functionAuth={registerInGoogle}
           images="./Google.svg"
           altImages="google"
           colorText="#fff"
@@ -55,45 +35,45 @@ export const Register = () => {
         />
       </div>
 
-      <div className="form">
+      <form onSubmit={handleSubmit(onSubmit)} className="form">
         <div className="name-lats">
           <InputText
             // eslint-disable-next-line react/no-children-prop
             children="Name"
-            name="user"
-            onchange={setName}
+            name="Name"
             type="text"
             style="mb"
             backgrou="#4889F4"
-          />{' '}
+            register={register}
+          />
           <InputText
             // eslint-disable-next-line react/no-children-prop
             children="LastName"
-            name="user"
-            onchange={setLastName}
+            name="LastName"
             type="text"
             style="mb"
             backgrou="#4889F4"
+            register={register}
           />
         </div>
         <InputText
           // eslint-disable-next-line react/no-children-prop
           children="Email"
-          name="email"
-          onchange={setEmail}
+          name="Email"
           type="email"
           style="mb"
           backgrou="#4889F4"
+          register={register}
         />
 
         <InputText
           // eslint-disable-next-line react/no-children-prop
           children="Password"
-          name="password"
-          onchange={setPassword}
+          name="Password"
           type="password"
           style="mb"
           backgrou="#4889F4"
+          register={register}
         />
 
         <div className="links">
@@ -101,15 +81,11 @@ export const Register = () => {
             Já tem cadastro ?
           </a>
         </div>
-      </div>
 
-      <div className="button">
-        <ButtonPage
-          value="Entrar"
-          backgrou={backgroun}
-          onclick={createNewUser}
-        />
-      </div>
+        <div className="button">
+          <ButtonPage value="Entrar" backgrou={backgroun} type="submit" />
+        </div>
+      </form>
     </section>
   )
 }

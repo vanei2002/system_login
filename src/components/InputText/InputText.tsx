@@ -1,23 +1,24 @@
-'use client'
-
+import React from 'react'
 import './inputtext.sass'
+import { UseFormRegister } from 'react-hook-form'
 
 type InputTextType = {
   children: string
   type: string
-  onchange: (value: string) => void
   name: string
   style?: string
   backgrou?: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  register: UseFormRegister<any>
 }
 
 export const InputText = ({
   children,
   type,
-  onchange,
   name,
   style,
   backgrou,
+  register,
 }: InputTextType) => {
   return (
     <label className="text" htmlFor={name}>
@@ -27,7 +28,7 @@ export const InputText = ({
         id={name}
         className={`inputText ${style}`}
         type={type}
-        onChange={(e) => onchange(e.target.value)}
+        {...register(name)} // Use register diretamente aqui
       />
     </label>
   )

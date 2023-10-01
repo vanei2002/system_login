@@ -1,20 +1,19 @@
 import { useGlobalsContext } from '@/context/GlobalsContext'
 import { Authpage } from '../Authgoogle/Authpage'
-import './authUser.sass'
 import { InputText } from '../InputText/InputText'
-import { useState } from 'react'
 import { ButtonPage } from '../ButtonPage/ButtonPage'
+import { useForm } from 'react-hook-form'
+import Link from 'next/link'
+
+import './authUser.sass'
 
 export const AuthUserLogin = () => {
   const { singInGoogle, singInFacebook, setPageStates } = useGlobalsContext()
 
-  const [user, setUser] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
+  const { register, handleSubmit } = useForm()
 
-  function validateUser() {
-    if (!user && !password) return alert('Campos não preenchidos')
-
-    alert(`Usuario ${user} e senha ${password}`)
+  const onSubmit = (data: object) => {
+    console.log(data) // 'data' contém os valores de todos os campos de entrada
   }
 
   return (
@@ -44,36 +43,33 @@ export const AuthUserLogin = () => {
         />
       </div>
 
-      <div className="form">
+      <form onSubmit={handleSubmit(onSubmit)} className="form">
         <InputText
           // eslint-disable-next-line react/no-children-prop
           children="User Name"
-          name="user"
-          onchange={setUser}
+          name="User"
           type="text"
           style="mb"
+          register={register}
         />
-
         <InputText
           // eslint-disable-next-line react/no-children-prop
           children="Password"
-          name="password"
-          onchange={setPassword}
+          name="Password"
           type="password"
           style="mb"
+          register={register}
         />
-
         <div className="links">
-          <a href="#">Esqueceu a senha</a>
+          <Link href="/resetPassword">Esqueceu a senha</Link>
           <a href="#" onClick={() => setPageStates(false)}>
             Ainda não tem Cadastro
           </a>
         </div>
-      </div>
-
-      <div className="button">
-        <ButtonPage value="Entrar" onclick={validateUser} />
-      </div>
+        <div className="button">
+          <ButtonPage value="Entrar" type="submit" />
+        </div>
+      </form>
     </section>
   )
 }
